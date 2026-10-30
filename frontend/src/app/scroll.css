@@ -1,0 +1,92 @@
+/* Scroll system: sticky layouts and scroll-driven motion.
+   Everything animated is gated behind @supports and prefers-reduced-motion, so unsupported or
+   reduced-motion browsers get the plain, fully visible layout. Sticky positioning is pure layout and always on. */
+
+:root {
+  --header-h: 72px;
+  --sticky-top: calc(var(--header-h) + 28px);
+}
+
+html { scroll-padding-top: calc(var(--header-h) + 16px); }
+
+.scroll-progress { display: none; }
+
+/* ---- Sticky layout (desktop) ---- */
+@media (min-width: 901px) {
+  .manifesto-aside { position: sticky; top: var(--sticky-top); align-self: start; }
+  .about-portrait { position: sticky; top: var(--sticky-top); align-self: start; }
+  .about-feature { align-items: start; }
+  .intro-grid h2 { position: sticky; top: var(--sticky-top); }
+  .timeline-marker, .timeline-meta { position: sticky; top: var(--sticky-top); align-self: start; }
+
+  /* Scrollytelling band: the content pins while the band scrolls past */
+  .days-teaser { min-height: 210vh; }
+  .days-inner { position: sticky; top: 0; min-height: 100vh; }
+}
+
+/* ---- Scroll-driven motion ---- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress {
+      display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 3px;
+      transform-origin: 0 50%; pointer-events: none;
+      background: linear-gradient(90deg, var(--color-brand-bright), var(--color-brand-mint));
+      box-shadow: 0 0 12px var(--glow);
+      animation: progress-grow linear both; animation-timeline: scroll(root);
+    }
+    @keyframes progress-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    /* Header condenses over the first 140px */
+    .site-header { animation: header-condense linear both; animation-timeline: scroll(root); animation-range: 0 140px; }
+    @keyframes header-condense { to { height: var(--header-h); box-shadow: 0 14px 34px -22px var(--panel-shadow); } }
+
+    /* Hero depth: decorations drift at different speeds as you leave the hero */
+    .hero-art .art-sun { animation: drift-slow linear both; animation-timeline: scroll(root); animation-range: 0 600px; }
+    .hero-art .art-orbit { animation: drift-fast linear both; animation-timeline: scroll(root); animation-range: 0 600px; }
+    .hero-art .portrait-photo { animation: portrait-lift linear both; animation-timeline: scroll(root); animation-range: 0 600px; }
+    @keyframes drift-slow { to { transform: translateY(70px); } }
+    @keyframes drift-fast { to { transform: translateY(-40px) rotate(-20deg); } }
+    @keyframes portrait-lift { to { transform: translateY(-26px) scale(1.03); } }
+
+    /* Reveal on entry. Fill is backwards-only so hover transforms still work afterwards. */
+    .section-heading, .intro-grid > *, .values-grid > div, .pillar-card, .pillar-row, .commitment-card,
+    .timeline-content, .manifesto-copy > *, .center-cta > *, .closing-inner > *, .page-next, .newsletter-empty,
+    .signup-inner > *, .contact-inner > *, .footer-grid > * {
+      animation: reveal-up cubic-bezier(.22, 1, .36, 1) backwards; animation-timeline: view(); animation-range: entry 0% entry 42%;
+    }
+    @keyframes reveal-up { from { opacity: 0; transform: translateY(36px) scale(.985); } }
+
+    /* Grid siblings arrive in sequence */
+    .pillar-card:nth-child(2), .commitment-card:nth-child(2n), .values-grid > div:nth-child(2) { animation-range: entry 6% entry 48%; }
+    .pillar-card:nth-child(3), .values-grid > div:nth-child(3) { animation-range: entry 12% entry 54%; }
+
+    /* Timeline: markers light up as each step reaches the middle of the screen and stay lit */
+    .timeline-marker { animation: marker-on linear forwards; animation-timeline: view(); animation-range: cover 28% cover 48%; }
+    @keyframes marker-on { to { background: var(--action); color: var(--on-action); border-color: var(--glow); box-shadow: 0 0 0 7px color-mix(in srgb, var(--glow) 18%, transparent); } }
+    .timeline-item::before { transform-origin: 50% 0; animation: line-draw linear both; animation-timeline: view(); animation-range: cover 30% cover 70%; }
+    @keyframes line-draw { from { transform: scaleY(0); } }
+
+    /* Image parallax inside the About portrait frame */
+    .about-portrait .portrait-photo img { animation: photo-pan linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    @keyframes photo-pan { from { transform: scale(1.12) translateY(3%); } to { transform: scale(1) translateY(-2%); } }
+
+    /* 100-days scene, scrubbed across the pinned band */
+    .days-teaser { view-timeline: --days block; }
+    .days-number { animation: days-number-scrub linear both; animation-timeline: --days; animation-range: cover 10% cover 70%; }
+    .days-copy { animation: days-copy-scrub linear both; animation-timeline: --days; animation-range: cover 22% cover 55%; }
+    .days-decoration { animation: days-deco-scrub linear both; animation-timeline: --days; animation-range: cover 0% cover 100%; }
+    @keyframes days-number-scrub { from { transform: scale(.72); opacity: .15; } to { transform: scale(1); opacity: 1; } }
+    @keyframes days-copy-scrub { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+    @keyframes days-deco-scrub { from { transform: translateY(80px); } to { transform: translateY(-120px); } }
+
+    /* Footer rises into place */
+    .site-footer { animation: footer-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+    @keyframes footer-rise { from { opacity: .4; transform: translateY(40px); } }
+  }
+}
+
+/* ---- Small screens: no pinned scenes, shorter header ---- */
+@media (max-width: 900px) {
+  :root { --header-h: 64px; }
+  .days-teaser { min-height: 410px; }
+}

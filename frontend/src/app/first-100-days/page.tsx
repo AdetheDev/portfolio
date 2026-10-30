@@ -1,0 +1,12 @@
+import Link from "next/link";
+import { PageIntro } from "@/components/page-intro";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+
+export const metadata = { title: "First 100 Days" };
+const phases = [{ number: "01", days: "Days 01—30", title: "Listen and learn", description: "Meet members across the association. Gather their priorities, understand current initiatives and identify where REAN can make the greatest difference.", actions: ["Structured member conversations", "Review current programs and partnerships", "Share a summary of key themes"] }, { number: "02", days: "Days 31—60", title: "Align around priorities", description: "Work with members and the association’s leadership to turn what we hear into a focused, shared agenda.", actions: ["Agree near-term priorities and measures", "Clarify member engagement pathways", "Share an initial delivery roadmap"] }, { number: "03", days: "Days 61—100", title: "Begin delivery and report back", description: "Start the agreed work, make progress visible and create a dependable rhythm for member updates.", actions: ["Launch priority working groups", "Report early progress and open questions", "Set the next review point with members"] }];
+/** Renders the First100DaysPage campaign page. */
+export default function First100DaysPage() { return <><SiteHeader /><main id="main"><PageIntro number="04" label="First 100 days" eyebrow="Listen. Align. Act." title="Momentum from" emphasis="the very start." description="A proposed opening period centered on listening to members, agreeing priorities and making the work visible." dark />
+  <section className="timeline wrap">{phases.map((phase) => <article className="timeline-item" key={phase.number}><div className="timeline-marker"><span>{phase.number}</span></div><div className="timeline-meta">{phase.days}<span className="timeline-line" /></div><div className="timeline-content"><h2>{phase.title}</h2><p>{phase.description}</p><ul>{phase.actions.map((action) => <li key={action}>{action}</li>)}</ul></div></article>)}</section><p className="plan-note wrap">This is a proposed framework. Specific actions and timelines should be confirmed with members and aligned with REAN’s governance and ongoing work.</p><section className="page-next wrap"><span>Next</span><Link href="/commitment"><strong>A commitment to members</strong><span>↗</span></Link></section></main><SiteFooter /></>; }
+
+

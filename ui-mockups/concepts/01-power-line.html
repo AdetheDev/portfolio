@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Power Line · REAN Mockup 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/mockup.css">
+<style>
+:root{--bg:#0b1d2a;--bg-2:#10283a;--panel:#14324a;--ink:#eef3f6;--muted:#9fb3c2;--amber:#ffc53d;--teal:#3fd2c7;--line:rgba(159,179,194,.22);--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Space Grotesk",system-ui,sans-serif;--bus:72px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans)}
+a{color:inherit}
+.skip{position:absolute;left:16px;top:-60px;background:var(--amber);color:#111;padding:10px 14px;z-index:50}
+.skip:focus{top:12px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+/* Header */
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px max(20px,calc((100vw - 1240px)/2));background:rgba(11,29,42,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:700 14px/1.1 var(--sans);letter-spacing:.04em}
+.brand-mark{width:40px;height:40px;border:2px solid var(--amber);border-radius:50%;display:grid;place-items:center;color:var(--amber);font:500 13px var(--mono)}
+.brand small{display:block;font:400 11px var(--mono);color:var(--muted);letter-spacing:.08em}
+.nav{display:flex;gap:24px;font:500 13px var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:var(--amber);color:#14140f;font:700 14px var(--sans);text-decoration:none;border:0;border-radius:2px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--ink);padding:10px 12px;font:500 12px var(--mono)}
+
+/* Bus bar: the vertical line every section hangs from */
+main{position:relative;max-width:1240px;margin:0 auto;padding:0 20px 120px}
+main::before{content:"";position:absolute;left:var(--bus);top:0;bottom:0;width:2px;background:linear-gradient(var(--amber),var(--teal) 60%,transparent)}
+.node{position:relative;padding:96px 0 40px calc(var(--bus) + 64px)}
+.node-tag{position:absolute;left:calc(var(--bus) - 9px);top:100px;display:flex;align-items:center;gap:14px;font:500 12px var(--mono);color:var(--amber);letter-spacing:.08em}
+.node-tag::before{content:"";width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--amber);box-shadow:0 0 0 6px rgba(255,197,61,.12)}
+.node-tag span{position:absolute;left:34px;white-space:nowrap}
+.kicker{font:500 12px var(--mono);color:var(--teal);letter-spacing:.12em;text-transform:uppercase;margin:36px 0 14px}
+h1,h2,h3{font-family:var(--sans);letter-spacing:-.03em;margin:0}
+h2{font-size:clamp(34px,4.4vw,56px);line-height:1.02;font-weight:700}
+.muted{color:var(--muted)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;min-height:calc(100vh - 70px);padding-top:40px}
+.hero h1{font-size:clamp(46px,6.6vw,92px);line-height:.96;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.lede{font-size:20px;color:var(--muted);max-width:520px;margin:28px 0 36px}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.diagram{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:end}
+.diagram svg{position:absolute;inset:0;width:100%;height:100%}
+.portrait{position:absolute;inset:22%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#1d4a6b,#0e2738);border:2px solid var(--amber);display:grid;place-items:center;text-align:center;font:500 12px var(--mono);color:var(--muted)}
+.portrait b{display:block;font:700 54px var(--sans);color:var(--ink);letter-spacing:-.04em}
+.readout{position:absolute;right:0;bottom:4%;background:var(--panel);border:1px solid var(--line);padding:12px 16px;font:500 12px/1.5 var(--mono);color:var(--muted)}
+.readout b{color:var(--teal);font-weight:500}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about p{margin:0 0 18px;color:var(--muted)}
+.principles{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px}
+.principles div{background:var(--bg);padding:18px 20px;display:grid;grid-template-columns:56px 1fr;gap:8px}
+.principles span{font:500 12px var(--mono);color:var(--amber)}
+.principles strong{display:block}
+
+/* Pillars as branches */
+.branches{margin-top:40px;display:grid;gap:14px}
+.branch{position:relative;display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;padding:22px 26px;background:var(--bg-2);border:1px solid var(--line);transition:border-color .2s,transform .2s}
+.branch::before{content:"";position:absolute;right:100%;top:50%;width:64px;height:2px;background:var(--line)}
+.branch:hover{border-color:var(--amber);transform:translateX(6px)}
+.branch:hover::before{background:var(--amber)}
+.branch .verb{font:500 12px var(--mono);color:var(--teal);letter-spacing:.1em;text-transform:uppercase}
+.branch h3{font-size:22px;margin-bottom:4px}
+.branch p{margin:0;color:var(--muted);font-size:15px}
+.branch .no{font:500 28px var(--mono);color:rgba(238,243,246,.25)}
+
+/* 100-day meter */
+.meter{margin-top:44px}
+.meter-track{display:grid;grid-template-columns:30fr 30fr 40fr;gap:6px}
+.meter-track button{all:unset;cursor:pointer;height:14px;background:var(--panel);border-radius:2px;position:relative}
+.meter-track button[aria-selected="true"]{background:var(--amber)}
+.meter-track button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.meter-scale{display:flex;justify-content:space-between;font:500 12px var(--mono);color:var(--muted);margin:10px 0 28px}
+.phase{display:none;grid-template-columns:1fr 1fr;gap:40px;padding:32px;border:1px solid var(--line);background:var(--bg-2)}
+.phase.active{display:grid}
+.phase h3{font-size:30px;margin:6px 0 12px}
+.phase ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.phase li{padding:14px 16px;border-left:2px solid var(--teal);background:rgba(63,210,199,.06);font-size:15px}
+.note{font:400 13px var(--mono);color:var(--muted);margin-top:16px}
+
+/* Commitments as switches */
+.switches{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
+.switch{text-align:left;font:inherit;color:inherit;background:var(--bg-2);border:1px solid var(--line);padding:26px;cursor:pointer;display:grid;gap:12px;transition:border-color .2s,background .2s}
+.switch .toggle{width:52px;height:28px;border-radius:999px;background:var(--panel);position:relative;transition:background .2s}
+.switch .toggle::after{content:"";position:absolute;top:4px;left:4px;width:20px;height:20px;border-radius:50%;background:var(--muted);transition:transform .2s,background .2s}
+.switch[aria-pressed="true"]{border-color:var(--amber);background:#17344a}
+.switch[aria-pressed="true"] .toggle{background:rgba(255,197,61,.25)}
+.switch[aria-pressed="true"] .toggle::after{transform:translateX(24px);background:var(--amber)}
+.switch strong{font-size:26px;letter-spacing:-.02em}
+.switch span.d{color:var(--muted);font-size:15px}
+
+/* Updates log */
+.log{margin-top:36px;border-top:1px solid var(--line)}
+.log a{display:grid;grid-template-columns:140px 140px 1fr 24px;gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.log a:hover h3{color:var(--amber)}
+.log time,.log .cat{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.log .cat{color:var(--teal)}
+.log h3{font-size:21px;margin-bottom:4px;transition:color .2s}
+.log p{margin:0;color:var(--muted);font-size:15px}
+.sample{display:inline-block;font:500 11px var(--mono);border:1px dashed var(--muted);color:var(--muted);padding:3px 8px;margin-left:10px;vertical-align:middle}
+
+/* Subscribe */
+.connect{margin-top:28px;padding:44px;background:linear-gradient(120deg,#14324a,#0f2a3d);border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.connect form{display:flex;gap:10px;flex-wrap:wrap}
+.connect input{flex:1 1 220px;padding:14px 16px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font:inherit}
+footer{border-top:1px solid var(--line);padding:28px max(20px,calc((100vw - 1240px)/2)) 100px;font:400 13px var(--mono);color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  :root{--bus:14px}
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
+  .nav.is-open{display:flex}
+  .nav a{padding:16px 20px;border-top:1px solid var(--line)}
+  .menu{display:block}
+  .top .btn{display:none}
+  .node{padding-left:44px;padding-top:80px}
+  .node-tag{top:84px}
+  .hero,.about,.phase,.connect{grid-template-columns:1fr}
+  .hero{min-height:auto}
+  .diagram{justify-self:start;max-width:320px}
+  .branch{grid-template-columns:1fr;gap:6px}
+  .branch::before{width:30px}
+  .branch .no{display:none}
+  .switches{grid-template-columns:1fr}
+  .log a{grid-template-columns:1fr;gap:4px}
+  .log a>span:last-child{display:none}
+  .connect{padding:26px}
+}
+</style>
+</head>
+<body data-concept="01 · Power Line">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top" data-wf="Header / sticky nav">
+  <a class="brand" href="#main"><span class="brand-mark">DA</span><span>DAMILOLA ASALEYE<small>FOR REAN PRESIDENT</small></span></a>
+  <nav class="nav" id="nav1" aria-label="Main">
+    <a href="#about">About</a><a href="#pillars">Pillars</a><a href="#days">100 Days</a><a href="#commitment">Commitment</a><a href="#updates">Updates</a>
+  </nav>
+  <a class="btn" href="#connect">Get updates</a>
+  <button class="menu" type="button" aria-expanded="false" aria-controls="nav1" data-menu-toggle="nav1">Menu</button>
+</header>
+
+<main id="main">
+  <section class="node" data-wf="Hero · headline + diagram motif + portrait">
+    <div class="node-tag"><span>N-00 · SOURCE</span></div>
+    <div class="hero">
+      <div>
+        <p class="kicker">Candidate for President · Renewable Energy Association of Nigeria</p>
+        <h1>Powering the industry. <em>Empowering</em> our members.</h1>
+        <p class="lede">A stronger REAN. Greater member value. A more influential renewable energy industry.</p>
+        <div class="actions"><a class="btn" href="#pillars">See the agenda &rarr;</a><a class="btn ghost" href="#about">Meet Damilola</a></div>
+      </div>
+      <div class="diagram" aria-hidden="true">
+        <svg viewBox="0 0 400 400" fill="none" stroke-width="2" data-deco>
+          <circle cx="200" cy="200" r="190" stroke="rgba(159,179,194,.18)" stroke-dasharray="4 8"/>
+          <circle cx="200" cy="200" r="150" stroke="rgba(63,210,199,.35)"/>
+          <path d="M200 10v40M200 350v40M10 200h40M350 200h40" stroke="#ffc53d"/>
+          <circle cx="200" cy="10" r="7" fill="#0b1d2a" stroke="#ffc53d"/><circle cx="390" cy="200" r="7" fill="#0b1d2a" stroke="#ffc53d"/>
+          <circle cx="200" cy="390" r="7" fill="#0b1d2a" stroke="#3fd2c7"/><circle cx="10" cy="200" r="7" fill="#0b1d2a" stroke="#3fd2c7"/>
+        </svg>
+        <div class="portrait" data-img><div><b>DA</b>Candidate portrait</div></div>
+        <div class="readout">STATUS <b>LISTENING</b><br>OUTPUT · MEMBER VALUE</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="node" id="about" data-wf="About · intro + 3 principles">
+    <div class="node-tag"><span>N-01 · ABOUT</span></div>
+    <div class="about">
+      <div>
+        <p class="kicker">A member-first approach</p>
+        <h2>Build on what works. Make room for more.</h2>
+      </div>
+      <div>
+        <p>Dr. Damilola Asaleye is standing for President of the Renewable Energy Association of Nigeria, to build on REAN’s achievements, strengthen its institutional capacity and work collaboratively with members to advance the industry.</p>
+        <p class="muted">[Approved biography, career milestones and sector service go here.]</p>
+        <div class="principles">
+          <div><span>01</span><p><strong>Listen first</strong>Understand members’ needs and priorities.</p></div>
+          <div><span>02</span><p><strong>Work together</strong>Make progress through collaboration.</p></div>
+          <div><span>03</span><p><strong>Deliver clearly</strong>Set priorities and report on progress.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="node" id="pillars" data-wf="Pillars · 5 branch rows">
+    <div class="node-tag"><span>N-02 · PILLARS</span></div>
+    <p class="kicker">A practical agenda</p>
+    <h2>Five circuits. One stronger association.</h2>
+    <div class="branches">
+      <article class="branch"><span class="verb">Connect</span><div><h3>Member value</h3><p>Make REAN membership more useful, responsive and connected to opportunities across the sector.</p></div><span class="no">01</span></article>
+      <article class="branch"><span class="verb">Represent</span><div><h3>A stronger industry voice</h3><p>Bring members together around shared priorities and strengthen REAN’s role in sector conversations.</p></div><span class="no">02</span></article>
+      <article class="branch"><span class="verb">Advance</span><div><h3>Practical solutions</h3><p>Promote constructive collaboration and practical approaches to the challenges members identify.</p></div><span class="no">03</span></article>
+      <article class="branch"><span class="verb">Strengthen</span><div><h3>Institutional strength</h3><p>Build the capacity, processes and partnerships that help the association serve members consistently.</p></div><span class="no">04</span></article>
+      <article class="branch"><span class="verb">Deliver</span><div><h3>Transparent delivery</h3><p>Set clear priorities, communicate progress and create meaningful ways for members to contribute.</p></div><span class="no">05</span></article>
+    </div>
+  </section>
+
+  <section class="node" id="days" data-wf="First 100 days · interactive meter + phase panel">
+    <div class="node-tag"><span>N-03 · 100 DAYS</span></div>
+    <p class="kicker">Start with listening</p>
+    <h2>The first 100 days, metered.</h2>
+    <div class="meter">
+      <div class="meter-track" role="tablist" aria-label="100-day phases">
+        <button role="tab" id="t1" aria-controls="p1" aria-selected="true" aria-label="Days 1 to 30"></button>
+        <button role="tab" id="t2" aria-controls="p2" aria-selected="false" aria-label="Days 31 to 60" tabindex="-1"></button>
+        <button role="tab" id="t3" aria-controls="p3" aria-selected="false" aria-label="Days 61 to 100" tabindex="-1"></button>
+      </div>
+      <div class="meter-scale"><span>Day 0</span><span>30</span><span>60</span><span>100</span></div>
+      <div class="phase active" id="p1" role="tabpanel" aria-labelledby="t1">
+        <div><span class="kicker">Days 01–30</span><h3>Listen and learn</h3><p class="muted">Meet members across the association. Gather their priorities, understand current initiatives and identify where REAN can make the greatest difference.</p></div>
+        <ul><li>Structured member conversations</li><li>Review current programs and partnerships</li><li>Share a summary of key themes</li></ul>
+      </div>
+      <div class="phase" id="p2" role="tabpanel" aria-labelledby="t2">
+        <div><span class="kicker">Days 31–60</span><h3>Align around priorities</h3><p class="muted">Work with members and the association’s leadership to turn what we hear into a focused, shared agenda.</p></div>
+        <ul><li>Agree near-term priorities and measures</li><li>Clarify member engagement pathways</li><li>Share an initial delivery roadmap</li></ul>
+      </div>
+      <div class="phase" id="p3" role="tabpanel" aria-labelledby="t3">
+        <div><span class="kicker">Days 61–100</span><h3>Begin delivery and report back</h3><p class="muted">Start the agreed work, make progress visible and create a dependable rhythm for member updates.</p></div>
+        <ul><li>Launch priority working groups</li><li>Report early progress and open questions</li><li>Set the next review point with members</li></ul>
+      </div>
+      <p class="note">Proposed framework. Actions and timelines to be confirmed with members and REAN governance.</p>
+    </div>
+  </section>
+
+  <section class="node" id="commitment" data-wf="Commitment · 4 toggle cards">
+    <div class="node-tag"><span>N-04 · COMMIT</span></div>
+    <p class="kicker">A commitment to members</p>
+    <h2>Four promises. Switch them on.</h2>
+    <div class="switches">
+      <button class="switch" type="button" aria-pressed="true"><span class="toggle" aria-hidden="true"></span><strong>I will listen.</strong><span class="d">Member perspectives should inform the association’s priorities and direction.</span></button>
+      <button class="switch" type="button" aria-pressed="false"><span class="toggle" aria-hidden="true"></span><strong>I will connect.</strong><span class="d">REAN should help members find ways to learn from and work with one another.</span></button>
+      <button class="switch" type="button" aria-pressed="false"><span class="toggle" aria-hidden="true"></span><strong>I will be clear.</strong><span class="d">Members deserve open communication about decisions, priorities and progress.</span></button>
+      <button class="switch" type="button" aria-pressed="false"><span class="toggle" aria-hidden="true"></span><strong>I will work with you.</strong><span class="d">Lasting progress comes from shared effort across the renewable energy industry.</span></button>
+    </div>
+  </section>
+
+  <section class="node" id="updates" data-wf="Updates · CMS list (title, excerpt, date, category)">
+    <div class="node-tag"><span>N-05 · LOG</span></div>
+    <p class="kicker">Campaign updates</p>
+    <h2>Signal log <span class="sample">Sample content</span></h2>
+    <div class="log">
+      <a href="#updates"><time>Sample date</time><span class="cat">Members</span><div><h3>Why member value comes first</h3><p>Excerpt placeholder. Up to 200 characters from the newsletter item.</p></div><span aria-hidden="true">&rarr;</span></a>
+      <a href="#updates"><time>Sample date</time><span class="cat">Listening</span><div><h3>What we are hearing from members</h3><p>Excerpt placeholder. Up to 200 characters from the newsletter item.</p></div><span aria-hidden="true">&rarr;</span></a>
+      <a href="#updates"><time>Sample date</time><span class="cat">Agenda</span><div><h3>Notes on the first 100 days</h3><p>Excerpt placeholder. Up to 200 characters from the newsletter item.</p></div><span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="connect" id="connect">
+      <div><p class="kicker">Keep in touch</p><h2>Stay connected.</h2><p class="muted">Get campaign updates by email.</p></div>
+      <form data-demo-form>
+        <label class="kicker" for="e1" style="flex-basis:100%;margin:0">Email address</label>
+        <input id="e1" type="email" placeholder="you@company.com" required>
+        <button class="btn" type="submit">Subscribe</button>
+        <p class="mk-status" role="status" style="flex-basis:100%"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer data-wf="Footer"><span>Damilola Asaleye for REAN President</span><span>Mockup 01 · Power Line</span></footer>
+
+<script src="../shared/mockup.js"></script>
+<script>
+  // 100-day meter tabs
+  var tabs = document.querySelectorAll('.meter-track [role="tab"]');
+  function selectTab(tab){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).classList.toggle('active', on);
+    });
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ selectTab(t); });
+    t.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        selectTab(next); next.focus();
+      }
+    });
+  });
+  // Commitment switches
+  document.querySelectorAll('.switch').forEach(function(s){
+    s.addEventListener('click', function(){ s.setAttribute('aria-pressed', String(s.getAttribute('aria-pressed') !== 'true')); });
+  });
+</script>
+</body>
+</html>

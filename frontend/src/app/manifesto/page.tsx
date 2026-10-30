@@ -1,0 +1,11 @@
+import Link from "next/link";
+import { PageIntro } from "@/components/page-intro";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+
+export const metadata = { title: "The Manifesto" };
+/** Renders the ManifestoPage campaign page. */
+export default function ManifestoPage() { return <><SiteHeader /><main id="main"><PageIntro number="02" label="The manifesto" eyebrow="Powering the industry. Empowering our members." title="A stronger REAN." emphasis="Greater value." description="A more connected association, a stronger collective voice and practical progress for Nigeria’s renewable energy industry." dark />
+  <section className="manifesto-body wrap"><aside className="manifesto-aside"><span className="aside-number">02</span><p>The vision</p><span className="aside-rule" /><span>Member-led<br />Industry-focused</span></aside><article className="manifesto-copy"><p className="lead-paragraph">Nigeria’s renewable energy industry needs an association that connects members to opportunities, strengthens the industry’s collective voice, promotes practical solutions and delivers measurable value.</p><p>REAN has an important role to play in bringing the sector together. The next chapter can build on the association’s achievements while making its work more focused, collaborative and useful to members.</p><h2>What this means in practice</h2><p>Listen closely to members. Make it easier to engage with the association and with one another. Champion shared priorities and strengthen REAN’s capacity to represent the sector. Set clear goals, then communicate progress in ways members can see and assess.</p><blockquote>“My vision is to build on REAN’s achievements, strengthen its institutional capacity and work collaboratively with members to advance the industry.”</blockquote><h2>Accountability is part of the promise</h2><p>A manifesto should be a basis for conversation and a way to measure progress. The priorities on this site are intended to be refined with members and reported against openly.</p><Link className="button button-dark" href="/pillars">See the strategic pillars <span>↗</span></Link></article></section><section className="page-next wrap"><span>Next</span><Link href="/pillars"><strong>Five strategic pillars</strong><span>↗</span></Link></section></main><SiteFooter /></>; }
+
+

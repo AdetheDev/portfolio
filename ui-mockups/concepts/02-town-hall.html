@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Town Hall · REAN Mockup 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/mockup.css">
+<style>
+:root{--bg:#fbf4ea;--card:#fffaf2;--ink:#2d1f1a;--muted:#7a6a60;--terra:#c4532d;--terra-soft:#f3d9c9;--sage:#8aa37b;--sage-soft:#e3ead9;--line:#e8dccd;--serif:"Fraunces",Georgia,serif;--sans:"Work Sans",system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+.skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:#fff;padding:10px 14px;z-index:50}
+.skip:focus{top:12px}
+.col{width:min(780px,calc(100% - 32px));margin:0 auto}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 15px var(--serif)}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--terra);color:#fff;display:grid;place-items:center;font:600 14px var(--sans);flex:0 0 auto}
+.nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--terra)}
+.menu{display:none;background:none;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:500 14px var(--sans);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;background:var(--terra);color:#fff;text-decoration:none;font:600 15px var(--sans);border:0;cursor:pointer}
+.btn.soft{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(32px,4.6vw,48px);line-height:1.08}
+.label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--terra);margin:0 0 12px}
+section{padding:72px 0}
+.muted{color:var(--muted)}
+
+/* Hero dialogue */
+.hero{padding-top:40px}
+.bubble{position:relative;max-width:88%;padding:22px 26px;border-radius:26px;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 0 var(--line)}
+.who{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px}
+.ask{border-bottom-left-radius:6px}
+.ask h1{font-size:clamp(38px,6.2vw,66px);line-height:1.02}
+.ask h1 em{color:var(--terra)}
+.reply{margin:18px 0 0 auto;background:var(--terra);color:#fff;border:0;border-bottom-right-radius:6px}
+.reply .who{color:rgba(255,255,255,.8)}
+.reply .avatar{background:#fff;color:var(--terra)}
+.reply p{margin:0;font-size:19px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0}
+.chips button{font:500 15px var(--sans);padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s}
+.chips button:hover{border-color:var(--terra)}
+.chips button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hint{font-size:14px;color:var(--muted);margin-top:14px}
+
+/* About transcript */
+.intro{display:grid;grid-template-columns:140px 1fr;gap:28px;align-items:start}
+.portrait{aspect-ratio:3/4;border-radius:20px;background:linear-gradient(160deg,var(--terra-soft),var(--sage-soft));display:grid;place-items:center;text-align:center;font-size:12px;color:var(--muted)}
+.intro p{margin:0 0 16px}
+.principles{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.principles span{padding:8px 14px;border-radius:999px;background:var(--sage-soft);font-size:14px;font-weight:500}
+
+/* Pillars Q&A */
+.qa{margin-top:28px;border-top:1px solid var(--line)}
+.qa details{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px 1fr 28px;gap:12px;align-items:center;padding:22px 0;font:600 21px/1.3 var(--serif)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .n{font:600 13px var(--sans);color:var(--terra)}
+.qa summary::after{content:"+";font:400 26px var(--sans);color:var(--terra);text-align:right;transition:transform .2s}
+.qa details[open] summary::after{transform:rotate(45deg)}
+.qa .a{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:0 0 24px}
+.qa .a p{margin:0;padding:16px 20px;background:var(--card);border:1px solid var(--line);border-radius:18px;border-top-left-radius:6px}
+.qa .a .tag{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sage)}
+
+/* 100 days thread */
+.thread{position:relative;margin-top:32px;display:grid;gap:22px}
+.thread::before{content:"";position:absolute;left:19px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.msg{position:relative;display:grid;grid-template-columns:40px 1fr;gap:16px}
+.day{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:600 12px var(--sans);z-index:1}
+.msg .body{background:var(--card);border:1px solid var(--line);border-radius:20px;border-top-left-radius:6px;padding:20px 22px}
+.msg .when{font-size:13px;font-weight:600;color:var(--terra)}
+.msg h3{font-size:24px;margin:2px 0 8px}
+.msg p{margin:0 0 12px;color:var(--muted)}
+.msg ul{margin:0;padding-left:18px}
+.disclaimer{font-size:14px;color:var(--muted);margin-top:18px;padding-left:56px}
+
+/* Commitments */
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.quote{padding:28px;border-radius:24px;background:var(--card);border:1px solid var(--line)}
+.quote:nth-child(1){background:var(--terra);color:#fff;border-color:var(--terra)}
+.quote:nth-child(4){background:var(--sage-soft)}
+.quote blockquote{margin:0 0 10px;font:600 30px/1.1 var(--serif)}
+.quote p{margin:0;font-size:15px;opacity:.85}
+
+/* Updates */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.card{text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.card .img{aspect-ratio:16/10;background:linear-gradient(135deg,var(--terra-soft),var(--sage-soft))}
+.card div.t{padding:18px}
+.card .meta{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--terra)}
+.card h3{font-size:20px;margin:6px 0 6px}
+.card p{margin:0;font-size:14px;color:var(--muted)}
+.sample{font-size:12px;font-weight:600;border:1px dashed var(--muted);color:var(--muted);border-radius:999px;padding:3px 10px;vertical-align:middle;margin-left:8px;font-family:var(--sans)}
+.wide{width:min(1080px,calc(100% - 32px));margin:0 auto}
+
+/* Join */
+.join{background:var(--ink);color:#fff;border-radius:32px;padding:44px}
+.join h2{color:#fff}
+.join label{display:block;font-size:14px;font-weight:600;margin:18px 0 8px}
+.join textarea,.join input{width:100%;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font:inherit}
+.join textarea{min-height:110px;resize:vertical}
+.join .btn{margin-top:18px}
+footer{padding:40px 0 110px;font-size:14px;color:var(--muted);text-align:center}
+
+@media (max-width:760px){
+  .nav{display:none;position:absolute;left:16px;right:16px;top:70px;flex-direction:column;gap:0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px;z-index:10}
+  .nav.is-open{display:flex}
+  .nav a{padding:12px 14px}
+  .menu{display:block}
+  .top{position:relative}
+  .bubble{max-width:100%}
+  .intro{grid-template-columns:1fr}
+  .portrait{max-width:180px}
+  .quotes,.cards{grid-template-columns:1fr}
+  .join{padding:26px;border-radius:24px}
+  section{padding:52px 0}
+}
+</style>
+</head>
+<body data-concept="02 · Town Hall">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="col top" data-wf="Header">
+  <a class="brand" href="#main"><span class="avatar">DA</span>Damilola Asaleye for REAN</a>
+  <nav class="nav" id="nav2" aria-label="Main">
+    <a href="#about">About</a><a href="#agenda">Agenda</a><a href="#days">100 days</a><a href="#updates">Updates</a><a href="#join">Join in</a>
+  </nav>
+  <button class="menu" type="button" aria-expanded="false" aria-controls="nav2" data-menu-toggle="nav2">Menu</button>
+</header>
+
+<main id="main">
+  <section class="col hero" data-wf="Hero · member question + topic chips + candidate reply">
+    <div class="bubble ask">
+      <div class="who"><span class="avatar" style="background:var(--sage)" aria-hidden="true">M</span>A REAN member asks</div>
+      <h1>What should REAN <em>do for me?</em></h1>
+    </div>
+    <div class="chips" role="group" aria-label="Pick a topic">
+      <button type="button" aria-pressed="true" data-reply="Make membership more useful, responsive and connected to real opportunities across the sector. That’s where we start.">Membership value</button>
+      <button type="button" aria-pressed="false" data-reply="Bring members together around shared priorities so REAN speaks for the industry with one stronger voice.">A louder industry voice</button>
+      <button type="button" aria-pressed="false" data-reply="Promote collaboration and practical approaches to the challenges you identify, not abstract plans.">Practical solutions</button>
+      <button type="button" aria-pressed="false" data-reply="Set clear priorities, communicate progress and give you meaningful ways to contribute.">Clear reporting</button>
+    </div>
+    <div class="bubble reply" aria-live="polite">
+      <div class="who"><span class="avatar" aria-hidden="true">DA</span>Dr. Damilola Asaleye</div>
+      <p id="reply">Make membership more useful, responsive and connected to real opportunities across the sector. That’s where we start.</p>
+    </div>
+    <p class="hint">Pick a topic to hear the answer. Powering the industry, empowering our members.</p>
+  </section>
+
+  <section class="col" id="about" data-wf="About · portrait + intro transcript">
+    <p class="label">Meet the candidate</p>
+    <div class="intro">
+      <div class="portrait" data-img>Candidate<br>portrait</div>
+      <div>
+        <h2>Build on what works. Make room for more.</h2>
+        <p style="margin-top:18px">Dr. Damilola Asaleye is standing for President of the Renewable Energy Association of Nigeria, to build on REAN’s achievements, strengthen its institutional capacity and work collaboratively with members to advance the industry.</p>
+        <p class="muted">[Approved biography, career milestones and sector service go here.]</p>
+        <div class="principles"><span>Listen first</span><span>Work together</span><span>Deliver clearly</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="col" id="agenda" data-wf="Agenda · 5 pillars as Q&A accordion">
+    <p class="label">Your questions, answered</p>
+    <h2>The agenda, as members asked for it.</h2>
+    <div class="qa">
+      <details open><summary><span class="n">01</span>How will my membership become more useful?</summary><div class="a"><span></span><div><p>Make REAN membership more useful, responsive and connected to opportunities across the sector.</p><span class="tag">Pillar · Member value</span></div></div></details>
+      <details><summary><span class="n">02</span>Will REAN speak up for the industry?</summary><div class="a"><span></span><div><p>Bring members together around shared priorities and strengthen REAN’s role in sector conversations.</p><span class="tag">Pillar · A stronger industry voice</span></div></div></details>
+      <details><summary><span class="n">03</span>What about the problems we face day to day?</summary><div class="a"><span></span><div><p>Promote constructive collaboration and practical approaches to the challenges members identify.</p><span class="tag">Pillar · Practical solutions</span></div></div></details>
+      <details><summary><span class="n">04</span>Can the association serve us consistently?</summary><div class="a"><span></span><div><p>Build the capacity, processes and partnerships that help the association serve members consistently.</p><span class="tag">Pillar · Institutional strength</span></div></div></details>
+      <details><summary><span class="n">05</span>How will we know what’s happening?</summary><div class="a"><span></span><div><p>Set clear priorities, communicate progress and create meaningful ways for members to contribute.</p><span class="tag">Pillar · Transparent delivery</span></div></div></details>
+    </div>
+  </section>
+
+  <section class="col" id="days" data-wf="First 100 days · message thread timeline">
+    <p class="label">Start with listening</p>
+    <h2>The first 100 days, in three conversations.</h2>
+    <div class="thread">
+      <div class="msg"><span class="day">30</span><div class="body"><span class="when">Days 01–30</span><h3>Listen and learn</h3><p>Meet members across the association. Gather their priorities, understand current initiatives and identify where REAN can make the greatest difference.</p><ul><li>Structured member conversations</li><li>Review current programs and partnerships</li><li>Share a summary of key themes</li></ul></div></div>
+      <div class="msg"><span class="day">60</span><div class="body"><span class="when">Days 31–60</span><h3>Align around priorities</h3><p>Work with members and the association’s leadership to turn what we hear into a focused, shared agenda.</p><ul><li>Agree near-term priorities and measures</li><li>Clarify member engagement pathways</li><li>Share an initial delivery roadmap</li></ul></div></div>
+      <div class="msg"><span class="day">100</span><div class="body"><span class="when">Days 61–100</span><h3>Begin delivery and report back</h3><p>Start the agreed work, make progress visible and create a dependable rhythm for member updates.</p><ul><li>Launch priority working groups</li><li>Report early progress and open questions</li><li>Set the next review point with members</li></ul></div></div>
+    </div>
+    <p class="disclaimer">Proposed framework. Actions and timelines to be confirmed with members and REAN governance.</p>
+  </section>
+
+  <section class="col" data-wf="Commitment · 4 quote cards">
+    <p class="label">A commitment to members</p>
+    <h2>Four things you can hold me to.</h2>
+    <div class="quotes">
+      <div class="quote"><blockquote>“I will listen.”</blockquote><p>Member perspectives should inform the association’s priorities and direction.</p></div>
+      <div class="quote"><blockquote>“I will connect.”</blockquote><p>REAN should help members find ways to learn from and work with one another.</p></div>
+      <div class="quote"><blockquote>“I will be clear.”</blockquote><p>Members deserve open communication about decisions, priorities and progress.</p></div>
+      <div class="quote"><blockquote>“I will work with you.”</blockquote><p>Lasting progress comes from shared effort across the renewable energy industry.</p></div>
+    </div>
+  </section>
+
+  <section class="wide" id="updates" data-wf="Updates · 3 CMS cards (cover, category, date, title, excerpt)">
+    <p class="label">From the floor</p>
+    <h2>Latest updates <span class="sample">Sample content</span></h2>
+    <div class="cards">
+      <a class="card" href="#updates"><div class="img" data-img></div><div class="t"><span class="meta">Members · Sample date</span><h3>Why member value comes first</h3><p>Excerpt placeholder. Up to 200 characters from the newsletter item.</p></div></a>
+      <a class="card" href="#updates"><div class="img" data-img></div><div class="t"><span class="meta">Listening · Sample date</span><h3>What we are hearing from members</h3><p>Excerpt placeholder. Up to 200 characters from the newsletter item.</p></div></a>
+      <a class="card" href="#updates"><div class="img" data-img></div><div class="t"><span class="meta">Agenda · Sample date</span><h3>Notes on the first 100 days</h3><p>Excerpt placeholder. Up to 200 characters from the newsletter item.</p></div></a>
+    </div>
+  </section>
+
+  <section class="col" id="join" data-wf="Join · priority prompt + email signup">
+    <div class="join">
+      <p class="label" style="color:var(--terra-soft)">Join the conversation</p>
+      <h2>What should REAN focus on next?</h2>
+      <form data-demo-form>
+        <label for="p2">Your priority (optional)</label>
+        <textarea id="p2" placeholder="Tell the campaign team what matters most to you"></textarea>
+        <label for="e2">Email for campaign updates</label>
+        <input id="e2" type="email" placeholder="you@company.com" required>
+        <button class="btn" type="submit">Send and subscribe</button>
+        <p class="mk-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="col" data-wf="Footer">Damilola Asaleye for REAN President · Stronger together. Further together.</footer>
+
+<script src="../shared/mockup.js"></script>
+<script>
+  var chips = document.querySelectorAll('.chips button');
+  var reply = document.getElementById('reply');
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(o){ o.setAttribute('aria-pressed', String(o === c)); });
+      reply.textContent = c.dataset.reply;
+    });
+  });
+</script>
+</body>
+</html>
