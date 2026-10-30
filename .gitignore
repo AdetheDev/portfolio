@@ -45,3 +45,15 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 *.pem
+
+design-preview.png
+assets/
+ui-mockups
+frontend/images/
+frontend/public/images
+
+AGENTS.md
+frontend/design_tokens.md
+frontend/README.md
+
+backend/MASTER_PROMPT.md
