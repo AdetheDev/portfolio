@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "studio": {
+      "root": "backend",
+      "framework": "sanity",
+      "rewrites": [
+        { "source": "/studio/static/(.*)", "destination": "/static/$1" },
+        { "source": "/studio/(.*)", "destination": "/index.html" },
+        { "source": "/studio", "destination": "/index.html" }
+      ]
+    },
+    "web": {
+      "root": "frontend",
+      "framework": "nextjs"
+    }
+  },
+  "rewrites": [
+    { "source": "/studio", "destination": { "service": "studio" } },
+    { "source": "/studio/(.*)", "destination": { "service": "studio" } },
+    { "source": "/(.*)", "destination": { "service": "web" } }
+  ]
+}

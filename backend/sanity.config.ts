@@ -11,6 +11,8 @@ if (!projectId) {
 export default defineConfig({
   name: 'rean',
   title: 'REAN Campaign',
+  // Served at /studio on the shared Vercel domain (see ../vercel.json).
+  basePath: '/studio',
   projectId,
   dataset: process.env.SANITY_STUDIO_DATASET || 'production',
   plugins: [structureTool(), visionTool()],
