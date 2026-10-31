@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 
-const links = [["Home", "/"], ["About", "/about"], ["Story", "/story"], ["Manifesto", "/manifesto"], ["Pillars", "/pillars"], ["First 100 days", "/first-100-days"], ["Newsletter", "/newsletter"], ["Design lab", "/prototypes"]];
+const links = [["Home", "/"], ["About", "/about"], ["Story", "/story"], ["Manifesto", "/manifesto"], ["Pillars", "/pillars"], ["First 100 days", "/first-100-days"], ["Newsletter", "/newsletter"]];
 
 /** Shared responsive navigation for campaign pages. */
 export function SiteHeader() {
